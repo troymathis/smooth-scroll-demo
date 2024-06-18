@@ -1,4 +1,5 @@
 "use client";
+import Index from "@/components/hero";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -10,9 +11,7 @@ export default function Home() {
   }, []);
   return (
     <main className="flex flex-col gap-5">
-      <div className=" bg-orange-400 h-screen">yo</div>
-      <div className="h-screen bg-orange-400">oy</div>
-      <div className="h-screen bg-orange-400">dwq</div>
+      <Index />
     </main>
   );
 }
