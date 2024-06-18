@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { twMerge } from "tailwind-merge";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -9,9 +10,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const className = twMerge('bg-black', inter.className)
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={className}>{children}</body>
     </html>
   );
 }
