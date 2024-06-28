@@ -1,5 +1,6 @@
 "use client";
-import Index from "@/components/hero";
+import Hero from "@/components/Hero";
+import Description from "@/components/Description"
 import { useEffect } from "react";
 
 export default function Home() {
@@ -11,7 +12,8 @@ export default function Home() {
   }, []);
   return (
     <main className="flex flex-col gap-5 ">
-      <Index />
+      <Hero />
+      <Description />
     </main>
   );
 }
