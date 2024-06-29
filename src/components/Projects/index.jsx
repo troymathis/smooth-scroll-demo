@@ -1,35 +1,51 @@
 import Image from "next/image";
 import gsap from "gsap";
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
+
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const projects = [
-  {
-    title: "Salar de Atacama",
-    src: "salar_de_atacama.jpg",
-  },
-  {
-    title: "Valle de la luna",
-    src: "valle_de_la_muerte.jpeg",
-  },
-  {
-    title: "Miscanti Lake",
-    src: "miscani_lake.jpeg",
-  },
-  {
-    title: "Miniques Lagoons",
-    src: "miniques_lagoon.jpg",
-  },
-];
 
 export default function index() {
-  const [selectedProject, setSelectedProject] = useState(0);
+    const [selectedProject, setSelectedProject] = useState(0);
+    const container = useRef(null)
+    const imageContainer = useRef(null)
+
+    useLayoutEffect( () => {
+        gsap.registerPlugin(ScrollTrigger);
+        const timeline = gsap.timeline({
+            trigger: imageContainer.current,
+            start: "top",
+            end: document.body.offsetHeight - window.innerHeight - 50,
+            scrub: true,
+            markers: true
+        })
+        timeline.fromTo(imageContainer.current, {y:0}, {y:500})
+    }, [])
+
+    const projects = [
+      {
+        title: "Salar de Atacama",
+        src: "salar_de_atacama.jpg",
+      },
+      {
+        title: "Valle de la luna",
+        src: "valle_de_la_muerte.jpeg",
+      },
+      {
+        title: "Miscanti Lake",
+        src: "miscani_lake.jpeg",
+      },
+      {
+        title: "Miniques Lagoons",
+        src: "miniques_lagoon.jpg",
+      },
+    ];
   return (
-    <div className="projects relative text-white mt-[25vh] p-[10%]">
+    <div className="projects text-white mt-[25vh] p-[10%]">
       <div className="projectsDescription flex h-[700px] justify-between gap-[5%]">
-        <div className="imageContainer relative h-full w-[40%]">
+        <div ref={imageContainer} data-scroll  className="imageContainer relative h-full w-[40%]">
           <Image
-          className="object-cover"
+          className="object-cover relative"
             src={`/images/${projects[selectedProject].src}`}
             fill={true}
             alt="image"
@@ -56,7 +72,7 @@ export default function index() {
         {
             projects.map((project, index) => {
                 return (
-                    <div key={index} onMouseOver={() => {setSelectedProject(index)}} className="projectEl w-full text-white uppercase text-[3vw] border-t-[1px] border-white last:border-b-[1px] flex justify-end">
+                    <div key={index} onMouseOver={() => {setSelectedProject(index)}} className="projectEl w-full text-white uppercase text-[3vw] border-t-[1px] border-white last:border-b-[1px] flex justify-end font-[700]">
                         <h2 className="m-0 mt-[40px] cursor-default">
                             {project.title}
                         </h2>

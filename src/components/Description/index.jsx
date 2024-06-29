@@ -36,7 +36,6 @@ const AnimatedText = ({ children }) => {
         start: "0px bottom",
         end: "bottom+=400px bottom",
         scrub: true,
-        markers: true,
       },
     });
     timeline.fromTo(text.current, { left: "-200px", opacity: 0 }, {left: "0", opacity: 1});

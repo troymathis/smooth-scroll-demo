@@ -17,7 +17,6 @@ export default function Index() {
         scrub: true,
         start: "top",
         end: "+=500px",
-        markers: true,
       },
     });
 
